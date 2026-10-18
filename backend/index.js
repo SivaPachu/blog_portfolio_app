@@ -15,7 +15,7 @@ app.use(cors({
 app.use(bodyParser.json());
 
 // MongoDB Cloud Connection
-const MONGO_URI = 'mongodb+srv://pachaiyappan:Password123@cluster0.vsnstqz.mongodb.net/blogDB?retryWrites=true&w=majority&appName=Cluster0';
+const MONGO_URI = process.env.MONGO_URI;
 
 mongoose.connect(MONGO_URI).then(()=>{
     console.log("Connection Successful")
