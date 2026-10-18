@@ -9,7 +9,7 @@ function Blogs({ isAdmin }) {
     const [editId, setEditId] = useState(null);
 
     const fetchBlogs = () => {
-        axios.get("http://localhost:5000/api/blogs").then((res) => {
+        axios.get("https://blog-portfolio-app-a9gv.onrender.com/api/blogs").then((res) => {
             setBlogs(res.data);
         }).catch(() => {
             console.log("Error fetching data");
@@ -23,7 +23,7 @@ function Blogs({ isAdmin }) {
 
     const handleLike = async (blog_id) => {
         try {
-            const response = await axios.patch(`http://localhost:5000/api/blogs/like/${blog_id}`);
+            const response = await axios.patch(`https://blog-portfolio-app-a9gv.onrender.com/api/blogs/like/${blog_id}`);
             if (response.status === 200) fetchBlogs();
         } catch (error) {
             console.error('Error liking the blog post:', error);
@@ -39,7 +39,7 @@ function Blogs({ isAdmin }) {
 
     const handleDelete = async (blog_id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/blogs/${blog_id}`);
+            await axios.delete(`https://blog-portfolio-app-a9gv.onrender.com/api/blogs/${blog_id}`);
             fetchBlogs();
         } catch (error) {
             console.error('Error deleting the blog post:', error);
@@ -53,10 +53,10 @@ function Blogs({ isAdmin }) {
 
         try {
             if (editId) {
-                await axios.put(`http://localhost:5000/api/blogs/${editId}`, { newTitle, date, newContent });
+                await axios.put(`https://blog-portfolio-app-a9gv.onrender.com/api/blogs/${editId}`, { newTitle, date, newContent });
                 setEditId(null);
             } else {
-                await axios.post("http://localhost:5000/api/blogs", { newTitle, date, newContent, likes: 0 });
+                await axios.post("https://blog-portfolio-app-a9gv.onrender.com/api/blogs", { newTitle, date, newContent, likes: 0 });
             }
             fetchBlogs();
             setNewTitle('');
